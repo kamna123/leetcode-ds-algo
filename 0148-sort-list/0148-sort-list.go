@@ -1,3 +1,25 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func merge(listA *ListNode, listB *ListNode) *ListNode {
+	if listA == nil {
+		return listB
+	}
+
+	if listB == nil {
+		return listA
+	}
+	if listA.Val < listB.Val {
+		listA.Next = merge(listA.Next, listB)
+		return listA
+	}
+	listB.Next = merge(listA, listB.Next)
+	return listB
+}
 func middle(h *ListNode) *ListNode {
     s := h
     h = h.Next
@@ -6,38 +28,17 @@ func middle(h *ListNode) *ListNode {
     }
     return s
 }
+func sortList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
 
-func merge(l, r *ListNode) *ListNode {
-    var dummy ListNode
-    c := &dummy
-    for ; l != nil && r != nil; c = c.Next {
-        if l.Val < r.Val {
-            c.Next = l
-            l = l.Next
-            continue
-        }
-        c.Next = r
-        r = r.Next
-    }
-    c.Next = r
-    if l != nil {
-        c.Next = l
-    }
-    return dummy.Next
-}
-
-func mergeSort(head *ListNode) *ListNode {
-    if head == nil || head.Next == nil {
-        return head
-    }
-    mid := middle(head)
+ mid := middle(head)
     next := mid.Next
     mid.Next = nil
-    left := mergeSort(head)
-    right := mergeSort(next)
+    left := sortList(head)
+    right := sortList(next)
     return merge(left, right)
+
 }
 
-func sortList(head *ListNode) *ListNode {
-    return mergeSort(head)
-}
