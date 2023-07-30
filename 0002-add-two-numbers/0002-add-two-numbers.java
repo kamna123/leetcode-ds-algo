@@ -29,20 +29,7 @@ class Solution {
             temp = temp.next;
             
         }
-        while (l1 != null) {
-            sum = l1.val + carry;
-            carry = sum / 10;
-            temp.next = new ListNode(sum % 10);
-            temp = temp.next;
-            l1 = l1.next;
-        }
-        while (l2 != null) {
-            sum = l2.val + carry;
-            carry = sum / 10;
-            temp.next = new ListNode(sum % 10);
-            temp = temp.next;
-            l2 = l2.next;
-        }
+       
         if (carry != 0 ){
              temp.next = new ListNode(carry);
         }
