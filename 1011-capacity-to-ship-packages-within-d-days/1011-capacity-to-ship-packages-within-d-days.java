@@ -30,7 +30,7 @@ class Solution {
         while (l <= r) {
             int mid = (l + r) / 2;
             boolean res1 = isFeasible(weights, mid, days);
-            System.out.println("left " + l + " right "+ r + " mid "+mid + " res "+ res1);
+         //   System.out.println("left " + l + " right "+ r + " mid "+mid + " res "+ res1);
             if (res1) {
                 res = mid;
                 r = mid - 1;
